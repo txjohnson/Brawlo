@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://iw0gxuu4bvx5"]
+
+[ext_resource type="Texture2D" uid="uid://pcamo58wsblo" path="res://Textures/smasbros stage.jpg" id="1_q7lpa"]
+[ext_resource type="PackedScene" uid="uid://bsekkq4p2lh3x" path="res://Characters/Mario.tscn" id="2_jc7o6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yokor"]
+size = Vector2(1456, 38)
+
+[node name="TestStage" type="Node2D"]
+
+[node name="SmasbrosStage" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_q7lpa")
+
+[node name="Ground" type="Area2D" parent="SmasbrosStage"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmasbrosStage/Ground"]
+position = Vector2(0, 263)
+shape = SubResource("RectangleShape2D_yokor")
+
+[node name="Wall" type="Area2D" parent="SmasbrosStage"]
+position = Vector2(2.08165e-12, 340)
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SmasbrosStage/Wall"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+polygon = PackedVector2Array(-736, -48, -736, 72, 736, 88, 744, -48)
+
+[node name="Mario" parent="." instance=ExtResource("2_jc7o6")]
+position = Vector2(544, 720)

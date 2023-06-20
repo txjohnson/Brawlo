@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cai34pmy4f2b8"]
+
+[ext_resource type="Texture2D" uid="uid://dd75g7eq7q885" path="res://icon.svg" id="1_d7hnt"]
+[ext_resource type="Script" path="res://Characters/Basic.gd" id="1_ybq67"]
+[ext_resource type="Script" path="res://Characters/StateMachineBasic.gd" id="3_gy0rt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd6wf"]
+size = Vector2(88, 126)
+
+[node name="Basic" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_ybq67")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Visual"]
+scale = Vector2(0.75, 1)
+texture = ExtResource("1_d7hnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gd6wf")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_gy0rt")

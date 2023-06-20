@@ -1,0 +1,345 @@
+[gd_scene load_steps=30 format=3 uid="uid://bsekkq4p2lh3x"]
+
+[ext_resource type="Texture2D" uid="uid://bg21w3v6uo6gp" path="res://Textures/frames/mario/idle1.tres" id="1_1inp3"]
+[ext_resource type="Script" path="res://Characters/Mario.gd" id="1_h8l5l"]
+[ext_resource type="Script" path="res://Characters/StateMachineMario.gd" id="1_x5yoo"]
+[ext_resource type="Texture2D" uid="uid://box53wrg0xi63" path="res://Textures/frames/mario/idle2.tres" id="2_jjknu"]
+[ext_resource type="Texture2D" uid="uid://baxv6qbu1e7m2" path="res://Textures/frames/mario/idle3.tres" id="3_vh6hm"]
+[ext_resource type="Texture2D" uid="uid://c3hx7aufu0yp6" path="res://Textures/frames/mario/idle4.tres" id="4_3uh4y"]
+[ext_resource type="Texture2D" uid="uid://b2p5gqn01tpcg" path="res://Textures/frames/mario/jump-down1.tres" id="5_baffn"]
+[ext_resource type="Texture2D" uid="uid://i6pbmq3b60of" path="res://Textures/frames/mario/jump-down2.tres" id="6_eq0ph"]
+[ext_resource type="Texture2D" uid="uid://dxxexhry7j2gw" path="res://Textures/frames/mario/jump-up1.tres" id="7_bnxet"]
+[ext_resource type="Texture2D" uid="uid://w8m76ydcokox" path="res://Textures/frames/mario/jump-up2.tres" id="8_wvqdf"]
+[ext_resource type="Texture2D" uid="uid://dy6p1ki0gvh7w" path="res://Textures/frames/mario/jump-up3.tres" id="9_ap7yc"]
+[ext_resource type="Texture2D" uid="uid://favm01o5kmrp" path="res://Textures/frames/mario/run1.tres" id="10_inbvk"]
+[ext_resource type="Texture2D" uid="uid://bltgv6k02f4xd" path="res://Textures/frames/mario/run2.tres" id="11_ng1fl"]
+[ext_resource type="Texture2D" uid="uid://wwmtfhdb38w3" path="res://Textures/frames/mario/run3.tres" id="12_s5k2m"]
+[ext_resource type="Texture2D" uid="uid://c2v5ik424ongf" path="res://Textures/frames/mario/run4.tres" id="13_74fiq"]
+[ext_resource type="Texture2D" uid="uid://3ncqly5fbvop" path="res://Textures/frames/mario/run5.tres" id="14_vwje6"]
+[ext_resource type="Texture2D" uid="uid://b6udwtjf6cdop" path="res://Textures/frames/mario/run6.tres" id="15_f4fq0"]
+[ext_resource type="Texture2D" uid="uid://cwetvk5jk6y4k" path="res://Textures/frames/mario/run7.tres" id="16_0bnxk"]
+[ext_resource type="Texture2D" uid="uid://chl85jsg1akri" path="res://Textures/frames/mario/run8.tres" id="17_d2pxo"]
+[ext_resource type="Texture2D" uid="uid://g85bb08ou7j6" path="res://Textures/frames/mario/squat4.tres" id="20_xqgxr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j3e13"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1inp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jjknu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vh6hm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3uh4y")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ap7yc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_baffn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eq0ph")
+}],
+"loop": true,
+"name": &"Jump_Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bnxet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wvqdf")
+}],
+"loop": true,
+"name": &"Jump_Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_inbvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ng1fl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_s5k2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_74fiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_vwje6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_f4fq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0bnxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_d2pxo")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_xqgxr")
+}],
+"loop": true,
+"name": &"Squat",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bl7lf"]
+resource_name = "Idle"
+length = 0.300002
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_kdylh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_w0p6a"]
+resource_name = "Run"
+length = 0.533337
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_nlmga"]
+resource_name = "Squat"
+length = 0.100003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Squat"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_oqoj5"]
+resource_name = "JumpUp"
+length = 0.200003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Jump_Up"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_m67su"]
+resource_name = "JumpDown"
+length = 0.300003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Jump_Down"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk3ks"]
+_data = {
+"Idle": SubResource("Animation_bl7lf"),
+"JumpDown": SubResource("Animation_m67su"),
+"JumpUp": SubResource("Animation_oqoj5"),
+"RESET": SubResource("Animation_kdylh"),
+"Run": SubResource("Animation_w0p6a"),
+"Squat": SubResource("Animation_nlmga")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njw06"]
+size = Vector2(56, 94)
+
+[node name="Mario" type="CharacterBody2D"]
+script = ExtResource("1_h8l5l")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_x5yoo")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_j3e13")
+animation = &"Idle"
+
+[node name="Animator" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_dk3ks")
+}
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 13)
+shape = SubResource("RectangleShape2D_njw06")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="GroundL" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-22, 52)
+target_position = Vector2(2.08165e-12, 10)
+collision_mask = 6
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="GroundR" type="RayCast2D" parent="Raycasts"]
+position = Vector2(20, 52)
+target_position = Vector2(2.08165e-12, 10)
+collision_mask = 6
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="LedgeGrabF" type="RayCast2D" parent="Raycasts"]
+
+[node name="LedgeGrabB" type="RayCast2D" parent="Raycasts"]
+
+[node name="StateName" type="Label" parent="."]
+offset_left = -54.0
+offset_top = -70.0
+offset_right = -1.0
+offset_bottom = -44.0
+text = "STAND"
+
+[node name="FrameNum" type="Label" parent="."]
+offset_left = 40.0
+offset_top = -70.0
+offset_right = 80.0
+offset_bottom = -44.0
+text = "0"
