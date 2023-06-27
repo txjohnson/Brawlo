@@ -1,26 +1,19 @@
 extends CharacterBody2D
 
+@onready var Sprite = $Visual/Sprite
 
-var RUNSPEED = 340
-var DASHSPEED = 390
-var DASHTIME  = 10
-var WALKSPEED = 200
-var GRAVITY = 1000
-var JUMPFORCE = 800
-var MAX_JUMPFORCE = 800
-var TRACTION = 40
-var FALLSPEED = 60
-var FALLINGSPEED = 900
-var MAXFALLSPEED = 900
+@export var player_num = 1
 
-var frame = 0
+@onready var Action = $Action
+@onready var Frame = $Frame
 
-func update_frames( delta ):
-	frame += 1
+@onready var GroundL = $RayCasts/GroundL
+@onready var GroundR = $RayCasts/GroundR
 
-func reset_frames():
-	frame = 0
+@onready var LedgeGrabF = $RayCasts/LedgeGrabF
+@onready var LedgeGrabB = $RayCasts/LedgeGrabB
+
 
 func turn( direction ):
-	$Sprite.flip_h = direction
+	Sprite.flip_h = direction
 

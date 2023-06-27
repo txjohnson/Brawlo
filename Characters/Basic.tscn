@@ -1,8 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cai34pmy4f2b8"]
+[gd_scene load_steps=15 format=3 uid="uid://cai34pmy4f2b8"]
 
 [ext_resource type="Texture2D" uid="uid://dd75g7eq7q885" path="res://icon.svg" id="1_d7hnt"]
 [ext_resource type="Script" path="res://Characters/Basic.gd" id="1_ybq67"]
-[ext_resource type="Script" path="res://Characters/StateMachineBasic.gd" id="3_gy0rt"]
+[ext_resource type="Script" path="res://Behaviors/ActionsManager.gd" id="3_22n37"]
+[ext_resource type="Script" path="res://Characters/BasicBlackboard.gd" id="3_qlq2k"]
+[ext_resource type="Script" path="res://Behaviors/Idle.gd" id="4_gjsmh"]
+[ext_resource type="Script" path="res://Behaviors/MoveOnGround.gd" id="5_sppnt"]
+[ext_resource type="Script" path="res://Behaviors/Dash.gd" id="6_6k5fu"]
+[ext_resource type="Script" path="res://Behaviors/Jump.gd" id="8_btv6y"]
+[ext_resource type="Script" path="res://Behaviors/HighJump.gd" id="9_u4frm"]
+[ext_resource type="Script" path="res://Behaviors/LowJump.gd" id="10_xkfxd"]
+[ext_resource type="Script" path="res://Behaviors/MoveInAir.gd" id="11_8m5tl"]
+[ext_resource type="Script" path="res://Behaviors/Landing.gd" id="12_ccyi1"]
+[ext_resource type="Script" path="res://Behaviors/Crouch.gd" id="13_t6yfi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd6wf"]
 size = Vector2(88, 126)
@@ -16,9 +26,93 @@ script = ExtResource("1_ybq67")
 [node name="Sprite" type="Sprite2D" parent="Visual"]
 scale = Vector2(0.75, 1)
 texture = ExtResource("1_d7hnt")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gd6wf")
+metadata/_edit_lock_ = true
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_gy0rt")
+[node name="Action" type="Label" parent="."]
+offset_left = -45.0
+offset_top = -94.0
+offset_right = 9.0
+offset_bottom = -71.0
+
+[node name="Frame" type="Label" parent="."]
+offset_left = 28.0
+offset_top = -91.0
+offset_right = 68.0
+offset_bottom = -68.0
+
+[node name="BlackBoard" type="Node" parent="."]
+script = ExtResource("3_qlq2k")
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="GroundL" type="RayCast2D" parent="RayCasts"]
+position = Vector2(-36, 56)
+target_position = Vector2(2.08165e-12, 10)
+collision_mask = 6
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="GroundR" type="RayCast2D" parent="RayCasts"]
+position = Vector2(34, 56)
+target_position = Vector2(2.08165e-12, 10)
+collision_mask = 6
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="LedgeGrabF" type="RayCast2D" parent="RayCasts"]
+position = Vector2(32, -34)
+scale = Vector2(3, 3)
+target_position = Vector2(20, 2.08165e-12)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="LedgeGrabB" type="RayCast2D" parent="RayCasts"]
+position = Vector2(-18, -52)
+scale = Vector2(3, 3)
+target_position = Vector2(-12, 2.08165e-12)
+collision_mask = 8
+
+[node name="ActionsManager" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("3_22n37")
+blackboard = NodePath("../BlackBoard")
+
+[node name="Idle" type="Node" parent="ActionsManager"]
+script = ExtResource("4_gjsmh")
+reachables = PackedStringArray("MoveOnGround", "Jump", "Crouch")
+
+[node name="MoveOnGround" type="Node" parent="ActionsManager"]
+script = ExtResource("5_sppnt")
+reachables = PackedStringArray("Idle", "Dash", "Jump", "Crouch")
+
+[node name="Dash" type="Node" parent="ActionsManager"]
+script = ExtResource("6_6k5fu")
+dash_wait = 5
+dash_time = 10
+after_dash = "Idle"
+
+[node name="Jump" type="Node" parent="ActionsManager"]
+script = ExtResource("8_btv6y")
+reachables = PackedStringArray("HighJump", "LowJump")
+
+[node name="HighJump" type="Node" parent="ActionsManager"]
+script = ExtResource("9_u4frm")
+after_jump = "MoveInAir"
+
+[node name="LowJump" type="Node" parent="ActionsManager"]
+script = ExtResource("10_xkfxd")
+after_jump = "MoveInAir"
+
+[node name="MoveInAir" type="Node" parent="ActionsManager"]
+script = ExtResource("11_8m5tl")
+reachables = PackedStringArray("Landing")
+
+[node name="Landing" type="Node" parent="ActionsManager"]
+script = ExtResource("12_ccyi1")
+
+[node name="Crouch" type="Node" parent="ActionsManager"]
+script = ExtResource("13_t6yfi")
